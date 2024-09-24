@@ -1,0 +1,120 @@
+                                                             ###VISUALIZING CLIMATE CHANGE###
+#Mount the drive
+from google.colab import drive
+drive.mount('/content/drive')
+#Setup
+import os
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+#read in the file
+anomaly_data = 'drive/MyDrive/ds544/temp anomalies.csv'
+#load the data into an array using numpy and the loadtxt function
+data = pd.read_csv(anomaly_data,skiprows=5)
+data = np.array(data)
+#make a line graph
+year = data[:,0]
+anomaly = data[:,1]
+
+# Plotting the line graph
+plt.plot(year, anomaly, color='red')
+
+# Adding labels to the axes
+plt.xlabel('Year')
+plt.ylabel('Change in Temperature (Celsius)')
+
+# Adding a title to the graph
+plt.title('Anomalous Temperatures in September')
+
+#averages of years
+variables = [
+    year61, year62, year63, year64, year65,
+    year66, year67, year68, year69, year70,
+    year71, year72, year73, year74, year75,
+    year76, year77, year78, year79, year80,
+    year81, year82, year83, year84, year85,
+    year86, year87, year88, year89, year90,
+    year91, year92, year93, year94, year95,
+    year96, year97, year98, year99, year00,
+    year01, year02
+]
+
+y_variables = [
+    'year61', 'year62', 'year63', 'year64', 'year65',
+    'year66', 'year67', 'year68', 'year69', 'year70',
+    'year71', 'year72', 'year73', 'year74', 'year75',
+    'year76', 'year77', 'year78', 'year79', 'year80',
+    'year81', 'year82', 'year83', 'year84', 'year85',
+    'year86', 'year87', 'year88', 'year89', 'year90',
+    'year91', 'year92', 'year93', 'year94', 'year95',
+    'year96', 'year97', 'year98', 'year99', 'year00',
+    'year01', 'year02'
+]
+# Extract the years from the variable names
+years = [variable[4:] for variable in y_variables]
+
+# Calculate the mean for each variable using numpy
+max = [variable.max() for variable in variables]
+plt.figure(figsize=(10, 6))
+
+# Create a line plot
+plt.plot(years, max, marker='o', linestyle='-', color='b', label='Maximum Values')
+
+# Add labels and title
+plt.xlabel('Years')
+plt.ylabel('Maximum Annual Temperature Values (Celsius)')
+plt.title('Maximum Annual Temperature Change Over the Years')
+
+# Show legend
+plt.legend()
+plt.xticks(rotation=90)
+# Display the plot
+plt.show()
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Variables containing temperature values for each year
+variables = [year61, year62, year63, year64, year65,
+             year66, year67, year68, year69, year70,
+             year71, year72, year73, year74, year75,
+             year76, year77, year78, year79, year80,
+             year81, year82, year83, year84, year85,
+             year86, year87, year88, year89, year90,
+             year91, year92, year93, year94, year95,
+             year96, year97, year98, year99, year00,
+             year01, year02]
+y_variables = [
+    'year61', 'year62', 'year63', 'year64', 'year65',
+    'year66', 'year67', 'year68', 'year69', 'year70',
+    'year71', 'year72', 'year73', 'year74', 'year75',
+    'year76', 'year77', 'year78', 'year79', 'year80',
+    'year81', 'year82', 'year83', 'year84', 'year85',
+    'year86', 'year87', 'year88', 'year89', 'year90',
+    'year91', 'year92', 'year93', 'year94', 'year95',
+    'year96', 'year97', 'year98', 'year99', 'year00',
+    'year01', 'year02'
+]
+# Extract the years from the variable names
+years = [int(variable[4:]) for variable in y_variables]
+
+# Calculate the mean for each year using numpy
+means = [np.mean(variable) for variable in variables]
+
+plt.figure(figsize=(10, 6))
+
+# Create a line plot
+plt.plot(years, means, marker='o', linestyle='-', color='b', label='Mean Values')
+
+# Add labels and title
+plt.xlabel('Years')
+plt.ylabel('Average Annual Temperature Values (Celsius)')
+plt.title('Average Annual Temperature Change Over the Years')
+
+# Show legend
+plt.legend()
+plt.xticks(rotation=90)
+
+# Display the plot
+plt.show()
